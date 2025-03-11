@@ -1,0 +1,245 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Home Section */
+#home {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #1e252d, #1e252d);
+    color: #fff;
+}
+
+#home h1 {
+    font-size: 4rem;
+    margin: 0;
+    animation: fadeIn 2s ease-in;
+}
+
+#home p {
+    font-size: 1.5rem;
+    margin: 10px 0 0;
+    animation: fadeIn 3s ease-in;
+
+}
+
+#home nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+
+}
+
+#home nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+#home nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: 20px;
+}
+
+#home nav ul li a:hover {
+    color: #ffdd57;
+}
+
+/* Typing Effect */
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #fff;
+    animation: typing 3s steps(20, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #fff; }
+}
+
+/* About Me Section */
+#about {
+    background: #fff;
+    padding: 60px 0;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-image img {
+    width: 375px;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+	margin: 4rem 0;
+	
+}
+
+/* Resume Section */
+#resume {
+    background: #f4f4f4;
+    padding: 60px 0;
+}
+
+.resume-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.resume-summary h3 {
+    margin-top: 0;
+}
+
+.resume-summary ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resume-summary ul li {
+    margin-bottom: 10px;
+}
+
+.resume-content .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #1e252d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+/* .resume-content .btn:hover {
+    background: #6610f2;
+} */
+
+/* Projects Section */
+#projects {
+    background: #fff;
+    padding: 60px 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-card h3 {
+    margin-top: 0;
+}
+
+.project-card .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #1e252d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+/* .project-card .btn:hover {
+    background: #6610f2;
+} */
+
+/* Contact Me Section */
+#contact {
+    background: #f4f4f4;
+    padding: 60px 0;
+}
+
+.contact-links {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-links .btn {
+    padding: 10px 20px;
+    background: #1e252d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+/* .contact-links .btn:hover {
+    background: #6610f2;
+} */
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #1e252d;
+    color: #fff;
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image img {
+        display: block;
+		margin: 4rem 0;
+		width: 100%;
+    }
+}
+
+
