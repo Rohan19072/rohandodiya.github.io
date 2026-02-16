@@ -3,184 +3,1191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohan Dodiya - Data Analyst Portfolio</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Rohan Dodiya - Data Scientist & AI Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text: #8892b0;
+            --text-light: #ccd6f6;
+            --highlight: #e6f1ff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        .bg-animation canvas {
+            display: block;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .logo::before {
+            content: '<';
+            margin-right: 5px;
+        }
+
+        .logo::after {
+            content: '/>';
+            margin-left: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::before {
+            content: attr(data-num);
+            color: var(--accent);
+            margin-right: 5px;
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-intro {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--highlight);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            border-color: var(--text-light);
+            color: var(--text-light);
+        }
+
+        .btn-secondary::before {
+            background: var(--text-light);
+        }
+
+        /* Section Styles */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--highlight);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::before {
+            content: attr(data-num);
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        /* About Section - Updated */
+        .about-content {
+            max-width: 900px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+        }
+
+        .skill-item::before {
+            content: '▹';
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--primary);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-role {
+            font-size: 1.5rem;
+            color: var(--highlight);
+            font-weight: 600;
+        }
+
+        .timeline-company {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .timeline-description {
+            list-style: none;
+        }
+
+        .timeline-description li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .timeline-description li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--secondary);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .project-links a:hover {
+            color: var(--accent);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--highlight);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-tag {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .skill-category {
+            background: var(--secondary);
+            padding: 2.5rem;
+            border-top: 3px solid var(--accent);
+        }
+
+        .skill-category h3 {
+            color: var(--highlight);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category h3::before {
+            content: '◆';
+            color: var(--accent);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .skill-list-item {
+            color: var(--text-light);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-list-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Contact */
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            font-size: 3rem;
+            color: var(--highlight);
+            margin-bottom: 2rem;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item-icon {
+            font-size: 2rem;
+        }
+
+        .contact-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 9999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--secondary);
+                flex-direction: column;
+                padding: 6rem 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Home Section -->
-    <section id="home">
-        <div class="container">
-            <h1>Rohan Dodiya</h1>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="bg-animation"><canvas id="bgCanvas"></canvas></div>
 
-            <nav>
-                <ul>
-                    <li><a href="#about" class="button">About Me</a></li>
-                    <li><a href="#resume">Resume</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact Me</a></li>
-                </ul>
-            </nav>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="" class=""></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" data-num="01.">About</a></li>
+                <li><a href="#experience" data-num="02.">Experience</a></li>
+                <li><a href="#projects" data-num="03.">Projects</a></li>
+                <li><a href="#skills" data-num="04.">Skills</a></li>
+                <li><a href="#contact" data-num="05.">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-intro">Hi, my name is</p>
+            <h1 class="hero-title">Rohan Dodiya.</h1>
+            <h2 class="hero-subtitle">I build intelligent data solutions.</h2>
+            <p class="hero-description">
+                I'm a Data Scientist and AI Engineer specializing in building scalable machine learning systems, 
+                ETL pipelines, and AI-powered applications. Currently pursuing my Master's in Data Science at NJIT 
+                with a focus on production-grade ML deployment and cloud architecture.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
         </div>
     </section>
 
-    <!-- About Me Section -->
-<section id="about" class="container">
-    <h1>About Me</h1>
-    <div class="about-content">
-        <div class="about-text">
-            <p>
-              I’m a graduate student in Data Science at NJIT with hands-on experience in developing machine learning models, building scalable ETL workflows, and delivering actionable business insights through data visualization and analytics.    
-            </p>
-           <p>
-               With a strong foundation in Python, SQL, and tools like Tableau and Power BI, I’ve worked on predictive maintenance models, medical data analysis, and web-based sentiment extraction apps—blending structured and unstructured data to solve real-world problems.
-           </p>
-            <p>
-                I enjoy working at the intersection of data and decision-making, transforming raw information into insights that drive strategy and innovation. I'm always curious, continuously learning, and open to roles in data science, analytics, and business intelligence.
-            </p>
-            <div class="about-details">
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/rohandodiya/" target="_blank">Connect with me</a></p>
-                <p><strong>Email:</strong> <a href="mailto:dodiyarohan.019@gmail.com">dodiyarohan.019@gmail.com</a></p>
+    <section id="about" class="section">
+        <h2 class="section-title fade-in" data-num="01.">About Me</h2>
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <p>
+                    I'm a passionate Data Scientist with expertise in building end-to-end machine learning solutions 
+                    and scalable data infrastructure. My journey in data science has equipped me with the ability to 
+                    transform complex datasets into actionable insights and production-ready applications.
+                </p>
+                <p>
+                    Currently pursuing my Master's in Data Science at New Jersey Institute of Technology (GPA: 3.81/4), 
+                    I combine strong academic foundations with hands-on industry experience. I've designed ETL pipelines 
+                    processing millions of records, deployed ML models on AWS, and built AI-powered systems using cutting-edge 
+                    technologies like RAG and LLMs.
+                </p>
+                <p>
+                    My approach focuses on delivering measurable business impact through data-driven solutions, whether it's 
+                    improving program outcomes by 15%, reducing manual effort by 60%, or achieving 89% model accuracy in 
+                    production environments.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-item">Python & R</div>
+                    <div class="skill-item">Machine Learning</div>
+                    <div class="skill-item">AWS Cloud</div>
+                    <div class="skill-item">ETL/ELT Pipelines</div>
+                    <div class="skill-item">NLP & AI</div>
+                    <div class="skill-item">Data Visualization</div>
+                </div>
             </div>
         </div>
-        <div class="about-image">
-            <img src="images\Rohan.jpg" alt="Your Professional Photo">
+    </section>
+
+    <section id="experience" class="section">
+        <h2 class="section-title fade-in" data-num="02.">Where I've Worked</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">Data Analyst (Volunteer)</h3>
+                        <p class="timeline-company">Bright Mind Enrichment and Schooling</p>
+                    </div>
+                    <span class="timeline-date">July 2025 – Present</span>
+                </div>
+                <ul class="timeline-description">
+                    <li>Engineered KPI dashboard in Tableau tracking 12 real-time program metrics, integrating data from cloud-based warehouse and enabling leadership to identify underperforming initiatives</li>
+                    <li>Achieved 15% improved program outcomes through data-driven budget reallocation of $5K</li>
+                    <li>Collaborated cross-functionally with program directors and IT teams to implement data governance protocols ensuring 98% data accuracy</li>
+                    <li>Conducted statistical analysis on student performance data identifying key factors driving graduation rate improvements</li>
+                    <li>Established automated anomaly detection scripts, reducing data inconsistencies by 35%</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">Data Scientist</h3>
+                        <p class="timeline-company">Dhrima Solutions LLP</p>
+                    </div>
+                    <span class="timeline-date">July 2022 – May 2023</span>
+                </div>
+                <ul class="timeline-description">
+                    <li>Designed scalable ETL pipeline on AWS processing 2.5M daily records from 6 data sources, automating workflows with Airflow and reducing manual effort by 60%</li>
+                    <li>Developed production-grade gradient boosting churn prediction model on AWS SageMaker with 89% accuracy</li>
+                    <li>Implemented CI/CD workflow using GitHub Actions for automated testing and deployment</li>
+                    <li>Built NLP preprocessing pipeline training Random Forest classifier achieving 85% accuracy and 0.83 F1-score</li>
+                    <li>Established monitoring infrastructure using AWS CloudWatch tracking API performance metrics</li>
+                </ul>
+            </div>
         </div>
+    </section>
+
+   <section id="projects" class="section">
+    <h2 class="section-title fade-in" data-num="03.">Things I've Built</h2>
+    <div class="projects-grid">
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">🤖</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">AI Workflow Automation Assistant</h3>
+            <p class="project-description">
+                Built production-ready agentic workflow system deployed on AWS ECS executing multi-step tasks including 
+                document routing, summarization, and insight extraction, with 95% accuracy. Implemented RAG-based retrieval 
+                architecture using Pinecone vector database and OpenAI embeddings for contextual grounding, reducing 
+                hallucination rates by 40%.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">RAG</span>
+                <span class="tech-tag">OpenAI</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">AWS ECS</span>
+                <span class="tech-tag">Pinecone</span>
+                <span class="tech-tag">CI/CD</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">📊</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072/Supply-Chain-Optimization-Platform" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">AI-Powered Supply Chain Optimization Platform</h3>
+            <p class="project-description">
+                Developed time series forecasting model using Prophet deployed on AWS achieving 87.3% demand prediction 
+                accuracy. Built interactive dashboard with scenario planning capabilities using Streamlit, enabling real-time 
+                what-if analysis integrated with RESTful API backend for seamless data updates.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Prophet</span>
+                <span class="tech-tag">AWS</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Snowflake</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">⚡</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">Training StarCoder-12B on C Language Dataset</h3>
+            <p class="project-description">
+                Fine-tuned StarCoder-12B on large-scale C language corpus using Hugging Face Transformers and Accelerate. 
+                Developed high-performance data pipelines with Tree-sitter and multiprocessing, significantly reducing preprocessing 
+                time. Scaled model training on HPC clusters with NVIDIA A100 GPUs, optimizing resource utilization.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Hugging Face</span>
+                <span class="tech-tag">LLaMA-3</span>
+                <span class="tech-tag">NVIDIA A100</span>
+                <span class="tech-tag">Tree-sitter</span>
+                <span class="tech-tag">HPC</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">📈</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072/Product-Demand-Forecasting" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">Product Demand Forecasting</h3>
+            <p class="project-description">
+                Built machine learning models to forecast product demand using historical sales data and external factors. 
+                Implemented time series analysis techniques and ensemble methods to improve prediction accuracy for inventory 
+                optimization and resource planning.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Jupyter</span>
+                <span class="tech-tag">Time Series</span>
+                <span class="tech-tag">ML Models</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Scikit-learn</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">💬</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072/Sentiment-Extraction-Model" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">Sentiment Extraction Model</h3>
+            <p class="project-description">
+                Deployed production-grade sentiment analysis system for extracting sentiment-bearing phrases from text. 
+                Developed NLP preprocessing pipeline with advanced feature engineering to identify key emotional indicators 
+                in customer feedback and social media data.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">NLP</span>
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">Transformers</span>
+                <span class="tech-tag">BERT</span>
+                <span class="tech-tag">Flask</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">💳</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072/CreditCard-Churn-Prediction" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">Credit Card Churn Prediction</h3>
+            <p class="project-description">
+                Developed machine learning model to predict customer churn for credit card services. Implemented feature 
+                engineering, class imbalance handling, and ensemble methods achieving high predictive accuracy for customer 
+                retention strategies and targeted marketing campaigns.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Jupyter</span>
+                <span class="tech-tag">ML Classification</span>
+                <span class="tech-tag">XGBoost</span>
+                <span class="tech-tag">Feature Engineering</span>
+                <span class="tech-tag">SMOTE</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">🎬</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072/Netflix_SQL_Project" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">Netflix SQL Analytics Project</h3>
+            <p class="project-description">
+                Comprehensive SQL-based analytics project analyzing Netflix content data. Performed complex queries to extract 
+                insights on content distribution, genre popularity, release trends, and viewing patterns using advanced SQL 
+                techniques including window functions and CTEs.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Data Analysis</span>
+                <span class="tech-tag">CTEs</span>
+                <span class="tech-tag">Window Functions</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <span class="project-icon">🏥</span>
+                <div class="project-links">
+                    <a href="https://github.com/Rohan19072/Hospital_Analysis_SQL" target="_blank">↗</a>
+                </div>
+            </div>
+            <h3 class="project-title">Hospital Analysis SQL Project</h3>
+            <p class="project-description">
+                SQL-driven healthcare analytics project examining hospital operations, patient demographics, treatment patterns, 
+                and resource utilization. Implemented complex queries to identify operational bottlenecks, optimize resource 
+                allocation, and improve patient care metrics.
+            </p>
+            <div class="project-tech">
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">Healthcare Analytics</span>
+                <span class="tech-tag">Data Modeling</span>
+                <span class="tech-tag">Query Optimization</span>
+            </div>
+        </div>
+
+        
     </div>
 </section>
 
-    <!-- Resume Section -->
-    <section id="resume" class="container">
-        <h1><strong>Resume</strong></h1>
-        <div class="resume-content">
+    <section id="skills" class="section">
+        <h2 class="section-title fade-in" data-num="04.">Technical Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-category fade-in">
+                <h3>Languages & Databases</h3>
+                <div class="skill-list">
+                    <div class="skill-list-item">Python, R, SQL</div>
+                    <div class="skill-list-item">PostgreSQL, MySQL</div>
+                    <div class="skill-list-item">Snowflake, BigQuery</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Machine Learning & AI</h3>
+                <div class="skill-list">
+                    <div class="skill-list-item">NLP & Text Analytics</div>
+                    <div class="skill-list-item">Predictive Modeling</div>
+                    <div class="skill-list-item">Time Series Forecasting</div>
+                    <div class="skill-list-item">RAG & Prompt Engineering</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Data Engineering</h3>
+                <div class="skill-list">
+                    <div class="skill-list-item">ETL/ELT Pipelines</div>
+                    <div class="skill-list-item">AWS (S3, Lambda, Glue, EC2)</div>
+                    <div class="skill-list-item">Apache Airflow, PySpark</div>
+                    <div class="skill-list-item">CI/CD (GitHub Actions)</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Libraries & Frameworks</h3>
+                <div class="skill-list">
+                    <div class="skill-list-item">Pandas, NumPy</div>
+                    <div class="skill-list-item">Flask, FastAPI</div>
+                    <div class="skill-list-item">Docker, Selenium</div>
+                    <div class="skill-list-item">Matplotlib, Seaborn</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Visualization & BI</h3>
+                <div class="skill-list">
+                    <div class="skill-list-item">Tableau, Power BI</div>
+                    <div class="skill-list-item">Looker</div>
+                    <div class="skill-list-item">Excel (Advanced)</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Advanced Techniques</h3>
+                <div class="skill-list">
+                    <div class="skill-list-item">A/B Testing</div>
+                    <div class="skill-list-item">Statistical Analysis</div>
+                    <div class="skill-list-item">Feature Engineering</div>
+                    <div class="skill-list-item">Data Governance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="contact-content fade-in">
+            <h2>Get In Touch</h2>
             <p>
-                Here's a summary of my professional experience and education. You can download my full resume for more details.
+                I'm currently exploring new opportunities in data science, machine learning engineering, and AI development. 
+                Whether you have a question or just want to say hi, I'd love to hear from you!
             </p>
-            <div class="resume-summary">
-                <h1>Experience</h1>
-                <ul>
-                    <h2>Data Analyst  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp(07/2025-Present) </h2>
-                    <h3> Bright Mind Enrichment & Schooling</h3>
-                    
-                <li>•Streamlined data collection workflows by partnering with cross-functional teams, improving data accuracy, accessibility, and reporting efficiency.</li>
-                <li>• Performed data cleansing, manipulation, and exploratory/statistical analysis using SQL, R, and SAS to uncover trends and support organizational decisions.</li>
-                <li>• Designed and maintained KPI dashboards and Business Intelligence reports to monitor program and campaign performance, enabling real-time insights.</li>
-                <li>• Delivered data-driven recommendations through visualizations, reporting, and statistical modeling techniques.</li>
-                </ul>
-                <ul>
-                    <h2>Data Scientist  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp(07/2022-05/2023) </h2>
-                    <h3> Dhrima Solutions LLP</h3>
-                    
-                <li>• Developed predictive maintenance algorithms using NLP and achieved up to 90% accuracy by leveraging various machine learning techniques.</li>
-                <li>• Created educational dashboards and data visualizations using Tableau and Python, which enhanced understanding of complex data insights and supported strategic decision-making</li>
-                <li>• Built and automated scalable ETL workflows to clean, integrate, and validate structured and unstructured datasets from multiple sources, improving data integrity for business reporting and analytics.</li>
-                <li>• Collaborated with cross-functional teams to identify KPIs and reporting needs.</li>
-                <li>• Leveraged SQL in PostgreSQL/MySQL to ensure efficient data extraction, validation, and delivery </li>
-                </ul>
-                <h1>Education</h1>
-                <ul>
-                    <h3>Masters in Data Science   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp (09/2023-05/2025)</h3>
-                    <li><b>New Jersey Institute of Technology </b> </li>
-                    &nbsp;
-                    &nbsp;
-                    
-                    <h3>Bachelor's in Computer Engineering    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp(07/2019-06/2023)</h3>
-                    <li><b>Gujarat Technological University </b></li>
-                </ul>
-
-              
+            
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-item-icon">📧</span>
+                    <a href="mailto:dodiyarohan.019@gmail.com">dodiyarohan.019@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-icon">📱</span>
+                    <a href="tel:+12019931446">+1 (201) 993-1446</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-icon">📍</span>
+                    <span>United States</span>
+                </div>
             </div>
-            <a href="https://drive.google.com/file/d/1c_UKX1t93q-c-krQzHgRsIloER8KOusX/view?usp=sharing" download class="btn">Resume</a>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="container">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Sentiment Extraction Model</h3>
-                <p>Developed a sentiment extraction model using Python, Flask, and MySQL. The system performs web scraping, text preprocessing, and machine learning to classify sentiments in real-time.</p>
-                <a href="https://github.com/Rohan19072/Sentiment-Extraction-Model/tree/main" class="btn">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>Product Demand Forecasting using Time series </h3>
-                <p>Developed a product demand forecasting solution using ARIMA and Prophet models on simulated SAP-like supply chain data.</p>
-                <a href="https://github.com/Rohan19072/Product-Demand-Forecasting" class="btn">View Project</a>
-            </div>   
-        </div>
-        <div class = "projects-grid">
-            <div class="project-card">
-                <h3>Credit Card Churn Prediction</h3>
-                <p>Built a machine learning model to predict customer churn using a Kaggle dataset; applied SMOTE for class balancing, performed EDA, and evaluated models using F1-score and ROC-AUC.</p>
-                <a href="https://github.com/Rohan19072/CreditCard-Churn-Prediction" class="btn">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>HealthCare Analysis Using SQL</h3>
-                <p>Designed and implemented SQL queries to analyze healthcare datasets, extracting insights on patient trends, treatments, and hospital performance for data-driven decision-making.</p>
-                <a href="https://github.com/Rohan19072/Hospital_Analysis_SQL" class="btn">View Project</a>
-            </div>
-        </div>
-
-        <!-- More Projects Button -->
-        <div class="more-projects" style="text-align: center; margin-top: 20px;">
-            <a class="btn" href="https://github.com/Rohan19072" target="_blank">
-                <i class="fab fa-github"></i> More Projects
-            </a>
-        </div>
-        
-    </section>
-
-    <!-- Certification Section -->
-    <section id="projects" class="container">
-        <h2>Certification</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>SAP S/4HANA : Beyond the basics</h3>
-                
-                <a href="" class="btn">View Credentials</a>
-            </div>
-            <div class="project-card">
-                <h3>SAP S/4HANA : Essentials Training </h3>
-                
-                <a href="" class="btn">View Credentials</a>
-            </div>   
-        </div>
-        <div class = "projects-grid">
-            <div class="project-card">
-                <h3>Excel: Advanced Functions and formulas</h3>
-                
-                <a href="" class="btn">View Credentials</a>
-            </div>
-            <div class="project-card">
-                <h3>SQL Intermediate</h3>
-                
-                <a href="" class="btn">View Credentials</a>
-            </div>
-        </div>
-
-        
-        
-    </section>
-
-    <!-- Contact Me Section -->
-    <section id="contact" class="container">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out to me via email or connect with me on LinkedIn.</p>
-        <div class="contact-links">
-            <a href="mailto:dodiyarohan.019@gmail.com" class="btn">Email Me</a>
-            <a href="https://www.linkedin.com/in/rohandodiya/" target="_blank" class="btn">LinkedIn</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Rohan Dodiya. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/rohandodiya" target="_blank">LinkedIn</a>
+            <a href="https://github.com/rohandodiya" target="_blank">GitHub</a>
+        </div>
+        <p>Designed & Built by Rohan Dodiya</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem;">© 2025 All rights reserved</p>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="assets/js/rohan.js"></script>
+    <script>
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = scrollPercentage + '%';
+        });
+
+        // Fade In Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animated Background
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = '#64ffda';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.strokeStyle = `rgba(100, 255, 218, ${1 - distance / 150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
-
-
